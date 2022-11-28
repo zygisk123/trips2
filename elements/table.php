@@ -1,5 +1,5 @@
 
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8">
@@ -10,6 +10,10 @@
                         <td>Distance</td>
                         <td>Max People Allowed</td>
                         <td>With Pets</td>
+                        <td>Show</td>
+                        <td>Edit</td>
+                        <td>Remove</td>
+
                     </tr>
                 </thead>
                 <tbody>

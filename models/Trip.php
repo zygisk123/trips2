@@ -75,7 +75,6 @@ class Trip{
                 $query .= " ORDER by `distance` DESC";
                 break;
         }
-        echo $query;
         $result = $db->conn->query($query);
         while ($row = $result->fetch_assoc()) {
             $trips[] = new Trip($row['id'], $row['month'], $row['max_people_allowed'], $row['distance'], $row['with_animals']);
