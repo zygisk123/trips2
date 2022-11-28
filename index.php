@@ -1,5 +1,13 @@
 <?php
+session_start();
 include "./routes.php";
+
+$old = false;
+if (isset($_SESSION['POST'])) {
+    if (count($_SESSION['POST']) != 0) {
+        $old = true;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +23,19 @@ include "./routes.php";
     <link rel="stylesheet" href="./css/style.css">
     <title>Trips</title>
 </head>
+
+<?php
+if(isset($_SESSION['errors'])){
+    foreach ($_SESSION['errors'] as $error) {?>
+        <div class="alert alert-danger" role="alert">
+            <?=$error?>
+        </div>
+        <?php 
+    }
+    $_SESSION['errors'] = [];
+}
+?>
+
 <body>
     <?php
     include "./elements/navbar.php";

@@ -10,6 +10,10 @@ class TripController{
 
     public static function createNewTrip()
     {
+        if (Validator::validate()) {
+            header("Location: ./index.php");
+            die;
+        }
         Trip::createNewTrip();
     }
 

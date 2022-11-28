@@ -30,8 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
 
     if (isset($_POST['registerParticipant'])) {
         ParticipantController::createNewParticipant();
-        $trip = TripController::showTrip($_GET['tripID']);
-        $participants = ParticipantController::getAllParticipants($_GET['tripID']);
+        $trip = TripController::showTrip($_POST['regTripID']);
+        $participants = ParticipantController::getAllParticipants($_POST['regTripID']);
     }
 
     if(isset($_POST['edit'])){

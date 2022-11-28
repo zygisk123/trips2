@@ -9,17 +9,17 @@
                     <select name = "month" class="form-select" aria-label="Default select example">
                         <option value = "" selected>Month</option>
                         <?php foreach ($months as $month) { ?>
-                            <option <?=($edit and $trip->month == $month)? "selected":""?> value = <?=$month?>><?=$month?></option>
+                            <option <?=($old and $_SESSION['POST']['month'] == $month)? "selected" : "" ?> <?=($edit and $trip->month == $month)? "selected":""?> value = <?=$month?>><?=$month?></option>
                         <?php } ?>
                     </select>
                 </div>
                 <div class="form-group mt-2">
                     <label for="tripDistance">Distance</label>
-                    <input value="<?=($edit)?$trip->distance:""?>" class="form-control" type="number" step = "1" id="tripDistance" name = "distance">
+                    <input value="<?=($old)? $_SESSION['POST']['distance'] : "" ?>" value="<?=($edit)?$trip->distance:""?>" class="form-control" type="number" step = "1" id="tripDistance" name = "distance">
                 </div>
                 <div class="form-group mt-2">
                     <label for="maxPeople">Max People Allowed</label>
-                    <input value="<?=($edit)?$trip->maxPeople:""?>"class="form-control" type="text" step = "1" id="maxPeople" name = "maxPeople">
+                    <input value="<?=($old)? $_SESSION['POST']['maxPeople'] : "" ?>" value="<?=($edit)?$trip->maxPeople:""?>"class="form-control" type="text" step = "1" id="maxPeople" name = "maxPeople">
                 </div>
                 <div class="form-check mt-2">
                     <input <?=($edit and $trip->withPets > 0)?"checked":""?> type="checkbox" value="1" class="form-check-input" name = "withAnimals" id="withAnimals">
@@ -36,3 +36,7 @@
         <div class="col-4"></div>
     </div>
 </div>
+
+<?php
+$_SESSION['POST'] = [];
+?>

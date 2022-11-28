@@ -1,5 +1,13 @@
 <?php
+session_start();
 include "./routes.php";
+
+$old = false;
+if (isset($_SESSION['POST'])) {
+    if (count($_SESSION['POST']) != 0) {
+        $old = true;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +23,19 @@ include "./routes.php";
     <link rel="stylesheet" href="./css/style.css">
     <title>Trips</title>
 </head>
+
+<?php
+if(isset($_SESSION['errors'])){
+    foreach ($_SESSION['errors'] as $error) {?>
+        <div class="alert alert-danger" role="alert">
+            <?=$error?>
+        </div>
+        <?php 
+    }
+    $_SESSION['errors'] = [];
+}
+?>
+
 <body>
 <?php
     include "./elements/navbar.php";
@@ -23,9 +44,9 @@ include "./routes.php";
         <div class="row">
             <div class="col-4"></div>
             <div class="col-4">
-                <h1><?=$trip->month?></h1>
-                <h3>Distance: <?=$trip->distance?> km</h3>
-                <h3>Max people allowed: <?=$trip->maxPeople?></h3>
+                <h1><?=($old)? $_SESSION['POST']['month']:$trip->month?></h1>
+                <h3>Distance: <?=($old)? $_SESSION['POST']['distance']:$trip->distance?> km</h3>
+                <h3>Max people allowed: <?=($old)? $_SESSION['POST']['maxPeople']:$trip->maxPeople?></h3>
                 <h3>Participants:</h3>
                 <ul>
                     <?php foreach ($participants as $key => $participant) { ?>
@@ -44,13 +65,17 @@ include "./routes.php";
                 <form action="" method="post">
                     <div class="form-group mt-2">
                         <label for="registerName">Name</label>
-                        <input class="form-control" type="text" id="registerName" name = "participantName">
+                        <input value="<?=($old)? $_SESSION['POST']['participantName'] : "" ?>" class="form-control" type="text" id="registerName" name = "participantName">
                     </div>
                     <div class="form-group mt-2">
                         <label for="registerSurname">Surname</label>
-                        <input class="form-control" type="text" id="registerSurname" name = "participantSurname">
+                        <input value="<?=($old)? $_SESSION['POST']['participantSurname'] : "" ?>" class="form-control" type="text" id="registerSurname" name = "participantSurname">
                     </div>
                     <input type="hidden" name="regTripID" value="<?=$trip->id?>">
+                    <input type="hidden" name="distance" value="<?=$trip->distance?>">
+                    <input type="hidden" name="month" value="<?=$trip->month?>">
+                    <input type="hidden" name="maxPeople" value="<?=$trip->maxPeople?>">
+
                     <button type="submit" class="btn btn-primary mt-2" name="registerParticipant">Register</button>
                 </form>
             </div>
