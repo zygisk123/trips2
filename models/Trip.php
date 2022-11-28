@@ -49,9 +49,34 @@ class Trip{
 
         if ($_GET['filterByMonth'] != "") {
             $query .= " WHERE `month` = '" . $_GET['filterByMonth'] . "'";
+            $first = false;
         }
+        if ($_GET['filterByPatricipants'] != "") {
+            if ($first) {
+                $query .= " WHERE `max_people_allowed` >= '" . $_GET['filterByPatricipants'] . "'";
+                $first = false;
+            }else {
+                $query .= " AND `max_people_allowed` >= '" . $_GET['filterByPatricipants'] . "'";
+            }
+        }
+        if (isset($_GET['findWithAnimals'])) {
+            if ($first) {
+                $query .= " WHERE `with_animals` > 0 ";
+                $first = false;
+            }else {
+                $query .= " AND `with_animals` > 0 " ;
+            }
+        }
+        switch ($_GET['sort']) {
+            case '1':
+                $query .= " ORDER by `distance`";
+                break;
+            case '2':
+                $query .= " ORDER by `distance` DESC";
+                break;
+        }
+        echo $query;
         $result = $db->conn->query($query);
-        // echo $query;
         while ($row = $result->fetch_assoc()) {
             $trips[] = new Trip($row['id'], $row['month'], $row['max_people_allowed'], $row['distance'], $row['with_animals']);
         }

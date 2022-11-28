@@ -1,7 +1,28 @@
 body{
-    background-color: brown;
+    background-color: rgba(165,42,42,0.6);
+    color: white;
+    font-family: Fantasy;
+
 }
+/* 
+*{
+    color: white;
+} */
 
 .table{
     text-align: center;
+    font-family: Fantasy;
+
 }
+
+tr{
+    color: white;
+}
+
+tr:hover{
+    /* background-color: blue; */
+    /* opacity: 0.5; */
+    color: rgb(165,42,42);
+}
+
+

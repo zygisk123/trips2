@@ -1,7 +1,8 @@
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         <div class="col-3"></div>
         <div class="col-6">
+            <h1>Filter</h1>
             <form action="" method="get">
                 <div class="row">
                     <div class="col-4">
@@ -38,8 +39,8 @@
                     <div class="col-4"></div>
                     <div class="col-4">
                         <div class="form-check">
-                            <input type="checkbox" value="1" class="form-check-input" name = "findWithAnimals" id="findwithAnimals">
-                            <label class="form-check-label" for="findwithAnimals">With Animals</label>
+                            <input type="checkbox" class="form-check-input mt-2" name = "findWithAnimals" id="findwithAnimals">
+                            <label class="form-check-label mt-2" for="findwithAnimals">With Animals</label>
                         </div>
                     </div>
                     <div class="col-4"></div>
@@ -47,7 +48,7 @@
                 <div class="row">
                     <div class="col-4"></div>
                     <div class="col-4">
-                        <button type="submit" class="btn btn-primary" name="filter">Filter</button>
+                        <button type="submit" class="btn btn-primary mt-2" name="filter">Filter</button>
                     </div>
                     <div class="col-4"></div>
                 </div>
