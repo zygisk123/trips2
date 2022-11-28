@@ -84,6 +84,40 @@ class Trip{
         return $trips;
     }
 
+    public static function showTrip($id)
+    {
+        $trip = new Trip();
+        $db = new DB();
+        $query = "SELECT * FROM `trips` WHERE `id` = '" . $id . "'";
+        $result = $db->conn->query($query);
+        while ($row = $result->fetch_assoc()) {
+            $trip = new Trip($row['id'], $row['month'], $row['max_people_allowed'], $row['distance'], $row['with_animals']);
+        }
+        $db->conn->close();
+        return $trip;
+
+    }
+
+    public function updateTrip()
+    {
+        $db = new DB();
+        $stmt = $db->conn->prepare("UPDATE `trips` SET `month`= ?,`max_people_allowed`= ?,`distance`= ?,`with_animals`= ? WHERE `id` = ?");
+        $stmt->bind_param("siiii", $_POST['month'], $_POST['maxPeople'], $_POST['distance'], $_POST['withAnimals'], $_POST['updateTripID']);
+        $stmt->execute();
+        $stmt->close();
+        $db->conn->close();
+    }
+
+    public static function destroy($id)
+    {
+        $db = new DB();
+        $stmt = $db->conn->prepare("DELETE FROM `trips` WHERE `id` = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+
+        $stmt->close();
+        $db->conn->close(); 
+    }
 }
 
 ?>

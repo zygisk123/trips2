@@ -17,5 +17,27 @@ class TripController{
     {
         return Trip::filter();
     }
+
+    public static function showTrip($id)
+    {
+        return Trip::showTrip($id);
+    }
+
+    public static function updateTrip()
+    {
+        $trip = New Trip();
+        $trip->id = $_POST['updateTripID'];
+        $trip->month = $_POST['month'];
+        $trip->maxPeople = $_POST['maxPeople'];
+        $trip->distance = $_POST['distance'];
+        $trip->withPets = $_POST['withAnimals'];
+        $trip->updateTrip();
+    }
+
+    public static function destroy($id)
+    {
+        Trip::destroy($id);
+    }
+
 }
 ?>

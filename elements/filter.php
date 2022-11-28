@@ -10,7 +10,7 @@
                             <select name = "filterByMonth" id="filterMonth" class="form-select" aria-label="Default select example">
                                 <option value = "" selected>Month</option>
                                 <?php foreach ($months as $month) { ?>
-                                    <option value = <?=$month?>><?=$month?></option>
+                                    <option <?=(isset($_GET["filterByMonth"]))?($_GET["filterByMonth"] == $month) ? "selected" : '':'';?>  value = <?=$month?>><?=$month?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -20,7 +20,7 @@
                             <select name = "filterByPatricipants" class="form-select" aria-label="Default select example">
                                 <option value = "" selected>Participants</option>
                                 <?php for($i = 1; $i <=50 ; $i++) { ?>
-                                    <option value = <?=$i?>><?=$i?></option>
+                                    <option <?=(isset($_GET["filterByPatricipants"]))?($_GET["filterByPatricipants"] == $i) ? "selected" : '':'';?> value = <?=$i?>><?=$i?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -39,7 +39,7 @@
                     <div class="col-4"></div>
                     <div class="col-4">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input mt-2" name = "findWithAnimals" id="findwithAnimals">
+                            <input <?=(isset($_GET["findWithAnimals"]))?($_GET["findWithAnimals"] > 0) ? "checked" : '':'';?> type="checkbox" class="form-check-input mt-2" name = "findWithAnimals" id="findwithAnimals">
                             <label class="form-check-label mt-2" for="findwithAnimals">With Animals</label>
                         </div>
                     </div>

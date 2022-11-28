@@ -17,6 +17,7 @@ include "./routes.php";
 </head>
 <body>
     <?php
+    include "./elements/navbar.php";
     include "./elements/addForm.php";
     include "./elements/filter.php";
     include "./elements/table.php";
